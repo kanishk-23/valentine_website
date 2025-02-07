@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine</title>
+  <style>
+    body {
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Envelope Container */
+    .envelope-container {
+      position: relative;
+      width: 50%;
+      height: 40%;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+
+    /* Envelope */
+    .envelope {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease-in-out;
+      border-radius: 15px; /* Rounded Corners */
+    }
+
+    /* Flip Animation */
+    .envelope-container:hover .envelope {
+      transform: rotateY(180deg);
+    }
+
+    /* Front Side */
+    .front {
+      background: red;
+      color: white;
+      font-size: 32px; /* Name Size */
+      font-family: cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+      border-radius: 15px; /* Rounded Corners */
+    }
+
+    /* Back Side - Envelope Design */
+    .back {
+      background: red;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform: rotateY(180deg);
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px; /* Rounded Corners */
+    }
+
+    /* Envelope Flap - Inverted Triangle with White Borders */
+.flap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 50%;
+  background: red;
+  clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+  border-left: 5px solid white;  /* White border on the left */
+  border-right: 5px solid white; /* White border on the right */
+}
+
+    /* Heart Seal */
+    .seal {
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px; /* Increased Heart Size */
+      height: 80px;
+      background-color: darkred;
+      clip-path: path("M30 5C15 -10 0 10 15 30L30 50L45 30C60 10 45 -10 30 5Z");
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Card */
+    .card {
+      display: none;
+      position: absolute;
+      width: 40%;
+      height: 30%;
+      background: white;
+      color: red;
+      font-size: 24px;
+      font-family: cursive;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      transform: translateY(-50px);
+      animation: pop 0.5s ease-out forwards;
+    }
+
+    /* Centering the Card */
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Buttons */
+    .card button {
+      margin: 10px;
+      padding: 8px 15px;
+      border: none;
+      background: darkred;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .card button:hover {
+      background: red;
+    }
+  </style>
+</head>
+<body>
+
+<div class="envelope-container" onclick="openEnvelope()">
+  <div class="envelope">
+    <div class="front">CHOTA KUNGFU PANDA</div>
+    <div class="back">
+      <div class="flap"></div>
+      <div class="seal"></div>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card">
+  <p>Will you be my Valentine? 💖</p>
+  <button onclick="location.href='/yes'">Yes</button>
+  <button onclick="location.href='/letter'">Yes, I wanna be</button>
+</div>
+
+<script>
+  function openEnvelope() {
+    document.querySelector(".envelope-container").style.display = "none";
+    document.getElementById("card").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
